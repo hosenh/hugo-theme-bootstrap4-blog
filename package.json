@@ -7,8 +7,9 @@
     "url": "https://github.com/alanorth/hugo-theme-bootstrap4-blog.git"
   },
   "scripts": {
-    "build:css": "node-sass --output-style expanded --precision 6 source/scss/style.scss static/css/style.css.tmp && cleancss --level 1 static/css/style.css.tmp -o static/css/style.css",
-    "build:fonts": "cp node_modules/font-awesome/fonts/* static/fonts",
+    "build:samim-font": "cp node_modules/samim-font/dist/Samim* static/fonts/",
+    "build:css": "node-sass --output-style expanded --precision 6 source/scss/style.scss static/css/style.css.tmp && cleancss --level 1 static/css/style.css.tmp -o static/css/style.css && rtlcss static/css/style.css static/css/style.css",
+    "build:fonts": "npm run build:samim-font && cp node_modules/font-awesome/fonts/* static/fonts",
     "build:cookieconsent": "cp node_modules/cookieconsent/build/cookieconsent.min.css static/css && cp node_modules/cookieconsent/build/cookieconsent.min.js static/js",
     "build:generatesri": "node build/sri.js > data/sri.toml",
     "build": "npm run build:css && npm run build:fonts && npm run build:cookieconsent && npm run build:generatesri && npm run clean",
@@ -18,10 +19,12 @@
   "author": "Alan Orth",
   "license": "GPL-3.0",
   "devDependencies": {
-    "bootstrap": "4.1.3",
+    "bootstrap": "git+https://github.com/RTLCSS/bootstrap.git",
     "clean-css-cli": "^4.2.1",
     "cookieconsent": "3.0.4",
     "font-awesome": "^4.7.0",
-    "node-sass": "^4.9.3"
+    "node-sass": "^4.9.3",
+    "samim-font": "^1.0.2",
+    "rtlcss": "^2.2.1"
   }
 }
